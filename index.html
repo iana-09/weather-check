@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>weather check</title>
+    <link rel="icon" type="image/png" href="assets/weather logo.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    />
+  </head>
+  <body>
+    <div class="welcome-screen">
+      <div class="welcome-card">
+        <img src="assets/weather logo.png" class="welcome-logo" alt="weather check logo" />
+        <img
+          src="assets/message/search-city.png"
+          class="welcome-img"
+          alt="Weather search illustration"
+        />
+        <h1>Welcome!</h1>
+        <h3 class="regular-txt">Check real-time weather updates instantly</h3>
+        <button class="start-btn" type="button">Get Started</button>
+      </div>
+    </div>
+
+    <div class="app-layout">
+      <main class="main-container">
+      <nav class="top-actions" aria-label="Weather navigation">
+        <button class="nav-btn home-btn info-tip" type="button" aria-label="Go to home dashboard" data-tooltip="Home" data-tooltip-detail="Return to the country forecast picker.">
+          <span class="material-symbols-outlined">home</span>
+        </button>
+        <button class="nav-btn back-btn info-tip" type="button" aria-label="Back to previous city" data-tooltip="Back" data-tooltip-detail="Go back to the previous searched city." disabled>
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <button class="nav-btn forward-btn info-tip" type="button" aria-label="Forward to next city" data-tooltip="Forward" data-tooltip-detail="Go forward to the next searched city." disabled>
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+        <button class="nav-btn location-btn info-tip" type="button" aria-label="Use current location" data-tooltip="Current Location" data-tooltip-detail="Use your device location for local weather.">
+          <span class="material-symbols-outlined">my_location</span>
+        </button>
+        <button class="theme-toggle info-tip" type="button" aria-label="Change color mode" data-tooltip="Theme Mode" data-tooltip-detail="Switch between Auto, Dark, Light, and Glass modes."><span class="material-symbols-outlined">palette</span></button>
+        <button class="unit-toggle info-tip" type="button" aria-label="Switch temperature unit" data-tooltip="Units" data-tooltip-detail="Switch temperature between Celsius and Fahrenheit.">°C</button>
+      </nav>
+
+      <header class="input-container">
+        <label class="sr-only" for="city-input">Search city</label>
+        <input
+          class="city-input"
+          id="city-input"
+          placeholder="Search city"
+          type="search"
+          autocomplete="off"
+          list="search-suggestions"
+        />
+        <datalist id="search-suggestions"></datalist>
+        <button class="search-btn info-tip" type="button" aria-label="Search weather" data-tooltip="Search" data-tooltip-detail="Search weather for the typed city or country.">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+      </header>
+
+      <section class="weather-info" style="display: none">
+        <div class="location-date-container">
+          <div class="location">
+            <span class="material-symbols-outlined">location_on</span>
+            <h4 class="country-txt">Philippines</h4>
+          </div>
+          <div class="date-favorite">
+            <button class="favorite-btn info-tip" type="button" aria-label="Save city as favorite" data-tooltip="Favorite" data-tooltip-detail="Save this city for quick access.">
+              <span class="material-symbols-outlined">star</span>
+            </button>
+            <h5 class="current-date-txt regular-txt">Thurs, 27 Nov</h5>
+          </div>
+        </div>
+
+        <div class="weather-summary-container">
+          <img
+            src="assets/weather/clouds.svg"
+            class="weather-summary-img"
+            alt=""
+          />
+          <div class="weather-summary-info">
+            <h1 class="temp-txt">--°C</h1>
+            <h3 class="condition-txt regular-txt">Cloudy</h3>
+            <p class="feels-like-txt regular-txt">Feels like --°C</p>
+          </div>
+        </div>
+
+        <p class="weather-insight regular-txt">Search a city to see today's weather insight.</p>
+
+        <div class="weather-conditions-container">
+          <div class="condition-item">
+            <span class="material-symbols-outlined">water_drop</span>
+            <div class="condition-info">
+              <h5 class="regular-txt">Humidity</h5>
+              <h5 class="humidity-value-txt">55%</h5>
+            </div>
+          </div>
+
+          <div class="condition-item">
+            <span class="material-symbols-outlined">air</span>
+            <div class="condition-info">
+              <h5 class="regular-txt">Wind Speed</h5>
+              <h5 class="wind-value-txt">2 m/s</h5>
+            </div>
+          </div>
+
+          <div class="condition-item detail-card">
+            <span class="material-symbols-outlined">compress</span>
+            <div class="condition-info">
+              <h5 class="regular-txt">Pressure</h5>
+              <h5 class="pressure-value-txt">-- hPa</h5>
+            </div>
+          </div>
+
+          <div class="condition-item detail-card">
+            <span class="material-symbols-outlined">visibility</span>
+            <div class="condition-info">
+              <h5 class="regular-txt">Visibility</h5>
+              <h5 class="visibility-value-txt">-- km</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="forecast-panel">
+          <div class="panel-title-row">
+            <h4>5-Day Forecast</h4>
+            <span class="regular-txt">12 PM outlook</span>
+          </div>
+          <div class="forecast-items-container"></div>
+        </div>
+      </section>
+
+      <section class="home-dashboard search-city">
+        <div class="home-hero">
+          <img src="assets/weather logo.png" class="home-logo" alt="weather check logo" />
+          <div>
+            <h1>Choose a Forecast</h1>
+            <h4 class="regular-txt">
+              Tap a country preview, or search any city yourself.
+            </h4>
+          </div>
+        </div>
+
+        <div class="dashboard-header">
+          <div>
+            <h4>Countries to View</h4>
+            <p class="regular-txt">Famous city forecast previews</p>
+          </div>
+          <button class="view-countries-btn text-btn primary-text-btn info-tip" type="button" data-tooltip="Countries" data-tooltip-detail="Show or hide popular country forecast previews.">View Countries</button>
+        </div>
+
+        <div class="dashboard-grid is-hidden" aria-live="polite"></div>
+        <p class="dashboard-status regular-txt">Choose a country card to view its forecast.</p>
+      </section>
+
+      <section class="not-found section-message" style="display: none">
+        <img src="assets/message/not-found.png" alt="City not found" />
+        <div>
+          <h1 class="error-title">City not found!</h1>
+          <h4 class="error-message regular-txt">
+            Check the spelling or try another city.
+          </h4>
+          <button class="retry-btn" type="button">Retry</button>
+        </div>
+      </section>
+
+      <aside class="saved-panel" aria-label="Saved weather searches">
+        <div class="saved-group">
+          <div class="panel-title-row">
+            <h4>Favorites</h4>
+            <button class="clear-favorites-btn text-btn" type="button">Clear</button>
+          </div>
+          <div class="favorites-list chip-list" aria-live="polite"></div>
+        </div>
+        <div class="saved-group">
+          <div class="panel-title-row">
+            <h4>Recent Searches</h4>
+            <button class="clear-history-btn text-btn" type="button">Clear</button>
+          </div>
+          <div class="history-list chip-list" aria-live="polite"></div>
+        </div>
+      </aside>
+      </main>
+      <aside class="side-panel" aria-label="Extra weather features">
+        <section class="side-card now-extra-card">
+          <div class="side-title-row">
+            <div>
+              <h3>Today Details</h3>
+              <p class="regular-txt side-city-txt">Search a city to update this side panel.</p>
+            </div>
+            <span class="material-symbols-outlined">wb_twilight</span>
+          </div>
+          <div class="side-metric-grid">
+            <div class="side-metric">
+              <span class="material-symbols-outlined">sunny</span>
+              <div>
+                <p class="regular-txt">Sunrise</p>
+                <h4 class="sunrise-txt">--</h4>
+              </div>
+            </div>
+            <div class="side-metric">
+              <span class="material-symbols-outlined">nights_stay</span>
+              <div>
+                <p class="regular-txt">Sunset</p>
+                <h4 class="sunset-txt">--</h4>
+              </div>
+            </div>
+            <div class="side-metric">
+              <span class="material-symbols-outlined">cloud</span>
+              <div>
+                <p class="regular-txt">Cloud Cover</p>
+                <h4 class="cloud-cover-txt">--</h4>
+              </div>
+            </div>
+            <div class="side-metric">
+              <span class="material-symbols-outlined">explore</span>
+              <div>
+                <p class="regular-txt">Wind Direction</p>
+                <h4 class="wind-direction-txt">--</h4>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="side-card comfort-card">
+          <div class="side-title-row compact">
+            <h3>Comfort Check</h3>
+            <span class="comfort-label-txt">--</span>
+          </div>
+          <div class="comfort-track"><span class="comfort-fill"></span></div>
+          <p class="comfort-note regular-txt">Open a forecast to see a comfort reading.</p>
+        </section>
+
+        <section class="side-card quick-card">
+          <div class="side-title-row compact">
+            <h3>Quick Forecasts</h3>
+            <span class="material-symbols-outlined">travel_explore</span>
+          </div>
+          <div class="quick-city-grid">
+            <button type="button" data-city="Manila">Manila</button>
+            <button type="button" data-city="Tokyo">Tokyo</button>
+            <button type="button" data-city="London">London</button>
+            <button type="button" data-city="Sydney">Sydney</button>
+          </div>
+        </section>
+
+        <section class="side-card creator-card" aria-label="Creator credit">
+          <img src="assets/iana-logo.png" class="creator-logo" alt="IANA logo" />
+          <div class="creator-copy">
+            <p class="regular-txt">Created by</p>
+            <h3>IANA</h3>
+          </div>
+        </section>
+      </aside>    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
